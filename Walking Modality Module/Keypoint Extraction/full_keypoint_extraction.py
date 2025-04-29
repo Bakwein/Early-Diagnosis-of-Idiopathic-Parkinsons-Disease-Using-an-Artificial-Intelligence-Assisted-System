@@ -80,13 +80,13 @@ def extend_with_sliding_window(data_list, target_length=1200, window_size=100):
 
 
 # ------ Information of the person
-NAME_SURNAME = "Şahizer Balkan"
+NAME_SURNAME = "Name - Surname"
 SEX = "Female"
 PARKINSON = "0"
 
 
 # ----- Video path
-video_path = "D:/07.06.2024/Şahizer_Balkan_Yuruyus_DOK2.mp4"
+video_path = "sample_video.mp4"
 cap = cv2.VideoCapture(video_path)
 
 frame_no = 0
