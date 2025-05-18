@@ -16,7 +16,7 @@ import time
 
 
 
-# Detector'ı yapılandır
+# Configure Detector
 detector = Detector(
     face_model="retinaface",
     landmark_model="mobilefacenet",
@@ -26,9 +26,9 @@ detector = Detector(
 )
 
 
-# AU ortalamalarını tutacak DataFrame
-au_means = pd.DataFrame(columns=['name'])  # Başlangıçta sadece 'name' sütunu var
-#tüm aular
+
+au_means = pd.DataFrame(columns=['name'])  
+#all AU
 au_columns = [
     'AU01', 'AU02', 'AU03', 'AU04', 'AU05', 'AU06', 'AU07', 'AU08', 'AU09', 'AU10', 'AU11', 'AU12',
     'AU13', 'AU14', 'AU15', 'AU16', 'AU17', 'AU18', 'AU19', 'AU20', 'AU21', 'AU22', 'AU23', 'AU24',
@@ -42,20 +42,20 @@ au_columns = [
 
 ########################################################################function1 
 def extract_name_from_path(video_path):
-    # "dataset" kelimesi sonrasındaki kısmı al
+    
     if "dataset" in video_path:
-        # "dataset" kelimesinin bulunduğu yeri bul ve sonrasındaki kısmı al
+        
         dataset_index = video_path.index("Data_Hicbirkirpmayok") + len("Data_Hicbirkirpmayok")
         relevant_path = video_path[dataset_index:]
 
-        # "tekayak" kelimesine kadar olan kısmı al
+        # Take the part up to the word “unipod”, it depends on the file name you keep.
         name_end_index = relevant_path.find("tekayak")
         if name_end_index != -1:
             name = relevant_path[:name_end_index].strip('/')
         else:
             name = relevant_path.strip('/')
     else:
-        # Eğer "dataset" yoksa, tüm yolu al (varsayılan durum)
+        
         name = video_path
 
     return name
@@ -69,20 +69,19 @@ def extract_name_from_path(video_path):
 
 ########################################################################function2
 def process_video(video_path):
-    # Video üzerinden AU'ları tahmin et
-    predictions = detector.detect_video(video_path, skip_frames=1)  # skip_frames=1 yaptım
+    
+    predictions = detector.detect_video(video_path, skip_frames=1)  # skip_frames=1 
 
-    # AU'ların ortalamalarını döndür
-    # Önce mevcut AU'ların sütunlarını kontrol et
+
     au_data = predictions[au_columns] if all(col in predictions.columns for col in au_columns) else predictions
 
-     # Verileri sayısal olmayanlardan ayıklayalım ve NaN'a dönüştürelim
+     
     for column in au_data.columns:
         au_data[column] = pd.to_numeric(au_data[column], errors='coerce')
 
 
-    # Geriye döndürülecek DataFrame'i oluştur
-    return au_data.mean().to_frame().T  # AU'ların ortalama değerini döndür
+    
+    return au_data.mean().to_frame().T 
 
 
 
@@ -91,16 +90,16 @@ def process_video(video_path):
 
 ########################################################################function3
 def process_video_with_fallback(video_path, au_columns):
-    # Videodan AU'ları işleyelim
+    
     au_means = process_video(video_path)
 
-    # Eksik AU'ları kontrol et ve sıfırla doldur
+    
     for au in au_columns:
         if au not in au_means.columns:
-            au_means[au] = 0.0  # Eksik AU için sıfır atama
+            au_means[au] = 0.0  
 
-    # Sıfır atanan AU'lar dahil, sadece mevcut AU'ları döndürelim
-    return au_means[au_columns]  # Bu, belirlediğiniz tüm AU'lar için bir DataFrame döndürür.
+    
+    return au_means[au_columns]  
 
 
 
@@ -108,32 +107,32 @@ def process_video_with_fallback(video_path, au_columns):
 
 ########################################################################function4
 def get_video_info(video_path):
-    # VideoCapture ile videoyu aç
+    
     cap = cv2.VideoCapture(video_path)
 
-    # Video açıldı mı?
+    
     if not cap.isOpened():
         print("Video açılamadı!")
         return None
 
-    # Toplam kare sayısını al
+   
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
-    # FPS (Frames Per Second) değerini al
+    # FPS (Frames Per Second) 
     fps = cap.get(cv2.CAP_PROP_FPS)
 
-    # Süreyi hesapla
-    duration = total_frames / fps  # Toplam saniye
+    # time calculate
+    duration = total_frames / fps  
 
-    # Video bilgilerini ekrana yazdır
+    
     print(f"Toplam Kare Sayısı: {total_frames}")
     print(f"FPS (Kare/Saniye): {fps}")
     print(f"Süre (saniye): {duration:.2f}")
 
-    # Video kaynağını serbest bırak
+    
     cap.release()
 
-    # Bilgileri döndür
+
     return total_frames, fps, duration
 
 
@@ -143,52 +142,52 @@ def get_video_info(video_path):
 
 ########################################################################function5
 def process_videos_in_batches(video_paths, output_prefix,grup):
-    # Timer başlat  her video başında
+    # Start timer at the beginning of each video
     start_time = time.perf_counter()
-    # Her bir video için tek tek işle
+   
     for i, video_path in enumerate(video_paths):
-        df_results = pd.DataFrame()  # Her video için yeni bir DataFrame başlat
+        df_results = pd.DataFrame()  
 
-        # Video bilgilerini al
+        
         total_frames, fps, duration = get_video_info(video_path)
 
-        # AU ortalamalarını hesapla
+        
         au_means = process_video_with_fallback(video_path, au_columns)
 
 
 
-        # Yeni sütunları ekle
+        # new columns add
         au_means.loc[:, 'total_frame'] = total_frames
         au_means.loc[:, 'fps'] = fps
         au_means.loc[:, 'time'] = duration
 
 
-        # Timer bitiş
+        # Timer finish
         end_time = time.perf_counter()
         elapsed_time = end_time - start_time
 
 
-        # Saniye cinsinden süreyi dakika cinsine çevirdim
+        # I converted the time in seconds to minutes
         elapsed_minutes = elapsed_time / 60
 
 
-        au_means.loc[:, 'videoPro_timedk'] = round(elapsed_minutes, 3)  # 3 ondalık basamakla yuvarladım
+        au_means.loc[:, 'videoPro_timedk'] = round(elapsed_minutes, 3)  
         au_means.loc[:, 'name'] = extract_name_from_path(video_path)
 
 
 
         if(output_prefix=="healthy"):
-          au_means.loc[:, 'label'] = 0  # Sağlıklı birey
+          au_means.loc[:, 'label'] = 0  # Healthy individual
         else:
-          au_means.loc[:, 'label'] = 1  # hasta birey
+          au_means.loc[:, 'label'] = 1  # sick individual
 
-        # Sonuçları DataFrame'e ekle
+      
         df_results = pd.concat([df_results, au_means], ignore_index=True)
 
-        # Eğer grup boş değilse kaydet
+        
         if not df_results.empty:
-            # Çıktı dosyasının adını, sadece output_prefix ve i kullanarak oluştur
-            output_excel_path = f'/content/drive/MyDrive/asist_lab_bitirme/dataset_test/{output_prefix}_{grup}_{i}.xlsx'#BU DEĞİŞTİRİLECEKTİR.UYGUN DATASET YOLUNA GÖRE
+           
+            output_excel_path = f'/content/drive/MyDrive/asist_lab_bitirme/dataset_test/{output_prefix}_{grup}_{i}.xlsx'#THIS WILL BE CHANGED ACCORDING TO THE APPROPRIATE DATASET PATH
             df_results.to_excel(output_excel_path, index=False)
             print(f"{output_excel_path} kaydedildi.")
 

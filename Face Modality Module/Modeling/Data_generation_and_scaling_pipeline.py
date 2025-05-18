@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-############################### BURASI Data_preparation.py ELDE EDİLEN  ÖZELLİK DOSYASININ YOLU  #####################
+############################### THIS IS Data_preparation.py THE PATH OF THE RESULTING PROPERTY FILE  #####################
 file_path = r"C:\Users\murat\OneDrive\Masaüstü\bitirme\dataset\pyfeat_lokal_60_skipframes\parkinson_0_0.xlsx" # .xlsx veya .xls uzantısını kullanın
 df = pd.read_excel(file_path)
 
@@ -17,7 +17,7 @@ df = pd.read_excel(file_path)
 ###########   PİPELİNE ##############
 df2 = df.copy()
 def feature_engineering(df,df2):
-    # Sabit parametreler (Örneğin, params[0] = 1, params[2] = 1)
+    # Fixed parameters (For example, params[0] = 1, params[2] = 1)
     params= (1, 1, 1)
     params2= (1, 1, 2)
     params3=(1, 1, 1)
@@ -39,7 +39,7 @@ def feature_engineering(df,df2):
 
 
 
-    # Yeni sütunu hesapla
+    # new columns
     df['nf1'] = (df['AU01'] * params[0] + df['AU02'] * params[0] + df['AU04'] * params[0]) / params[2]
 
     df['nf2'] = (df['AU06']*params2[0] + df['AU09']*params2[0] + df['AU10']*params2[0]+df['AU11']*params2[0] +df['AU12']*params2[0] +df['AU17']*params2[0]) / (params2[2]*params2[1])
@@ -83,10 +83,10 @@ def feature_engineering(df,df2):
 df=feature_engineering(df,df2)
 print(df.head())
 
-# Kaydetme yolu
+# save path
 save_path = r"C:\Users\murat\OneDrive\Masaüstü\bitirme\Modeling\test.csv"
 
-# DataFrame'i CSV olarak kaydet
+# Save DataFrame as CSV
 df.to_csv(save_path, index=False)
 
 print(f"DataFrame başarıyla {save_path} konumuna kaydedildi.")
