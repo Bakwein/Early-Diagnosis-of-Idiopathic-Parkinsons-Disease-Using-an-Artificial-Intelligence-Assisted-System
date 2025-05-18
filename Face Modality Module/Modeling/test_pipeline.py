@@ -78,7 +78,7 @@ def feature_engineering():
    
     model_data = model_data.sample(frac=1, random_state=12).reset_index(drop=True)
 
-    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!          'name' sütununu ayrı bir değişkende sakladım
+    
     name_column = model_data["name"] if "name" in model_data.columns else None
 
     

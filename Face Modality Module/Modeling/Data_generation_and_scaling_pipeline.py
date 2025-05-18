@@ -10,7 +10,7 @@ import seaborn as sns
 
 
 ############################### THIS IS Data_preparation.py THE PATH OF THE RESULTING PROPERTY FILE  #####################
-file_path = r"C:\Users\murat\OneDrive\Masaüstü\bitirme\dataset\pyfeat_lokal_60_skipframes\parkinson_0_0.xlsx" # .xlsx veya .xls uzantısını kullanın
+file_path = r"C:\Users\murat\OneDrive\Masaüstü\bitirme\dataset\pyfeat_lokal_60_skipframes\parkinson_0_0.xlsx" # Use .xlsx or .xls extension
 df = pd.read_excel(file_path)
 
 

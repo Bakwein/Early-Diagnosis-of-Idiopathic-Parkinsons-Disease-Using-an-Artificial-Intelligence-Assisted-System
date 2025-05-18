@@ -199,7 +199,7 @@ def process_videos_in_batches(video_paths, output_prefix,grup):
 ####################################################################################################
 ################################     finally video processing    ###################################
 
-pathlist=["/content/drive/MyDrive/asist_lab_bitirme/test/parkinson/nihat-karasin-durus-tekayak-trim_YQ3k7X3f.mp4"]#buraya py feat ile  işlenecek video yolları girilir
+pathlist=["/content/drive/MyDrive/asist_lab_bitirme/test/parkinson/nihat-karasin-durus-tekayak-trim_YQ3k7X3f.mp4"]#Enter the video paths to be processed with py feat here
 process_videos_in_batches(pathlist, 'parkinson',0)
 
 
