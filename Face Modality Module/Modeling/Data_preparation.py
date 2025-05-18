@@ -1,9 +1,9 @@
 '''
-Bu çalışmada, py-feat modeli kullanılarak videolardan yüz verisi üzerinden Action Unit (AU) 
-özellikleri çıkarılmaktadır. Elde edilen AU'lar, yüz kaslarının hareketlerini temsil eden 
-66 farklı AU kodunu içerir. Her video için toplam kare (frame) sayısı, video işleme süresi, 
-videonun toplam süresi (saniye cinsinden), videodaki bireylerin isimleri ve ilgili etiket 
-(label) bilgileri belirlenmektedir.
+In this study, the py-feat model is used to generate Action Units (AU) based on face data from videos. 
+features are extracted. The resulting AUs represent the movements of the facial muscles. 
+It contains 66 different AU codes. Total number of frames for each video, video processing time, 
+the total duration of the video (in seconds), the names of the individuals in the video and the relevant tag 
+(label) information is determined.
 '''
 
 import os
