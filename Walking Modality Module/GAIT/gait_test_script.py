@@ -8,9 +8,9 @@ from sklearn.preprocessing import StandardScaler
 from scipy.interpolate import interp1d
 
 # -------------------- Load Model and Scaler --------------------
-model = load_model("best_trained_model.h5")
+model = load_model("best_trained_walking_model.h5")
 
-with open("scaler.pkl", "rb") as f:
+with open("walking_scaler.pkl", "rb") as f:
     scaler: StandardScaler = pickle.load(f)
 
 # -------------------- MongoDB Connection --------------------
