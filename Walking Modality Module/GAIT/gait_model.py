@@ -469,12 +469,12 @@ for train_idx, val_idx in kf.split(X_scaled, y_augmented):
 
 # Saving the best model
 if best_model:
-    best_model.save("best_trained_model.h5")
-    best_model.save("best_trained_model.keras")
-    with open("best_trained_model.pkl", "wb") as f:
+    best_model.save("best_trained_walking_model.h5")
+    best_model.save("best_trained_walking_model.keras")
+    with open("best_trained_walking_model.pkl", "wb") as f:
         pickle.dump(best_model, f)
     with open("scaler.pkl", "wb") as f:
-        pickle.dump(scaler, f)
+        pickle.dump(walking_scaler, f)
 
 #######################################################################################################################
 #                                            RESULTS PART
