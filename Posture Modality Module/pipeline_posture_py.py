@@ -218,14 +218,14 @@ def get_model_features_with_tsfel(df, video_name):
 # Feature extraction from video - Mediapipe
 video_path = "video-path" # change this to your video file path
 video_name = os.path.basename(video_path).split('.')[0]
-print(f"Extracted features from video: {video_name}")
+print(f"Extracting features from video: {video_name}")
 df_features = extract_features_from_video(video_path)
 
 # Feature extraction with TSFEL
 df_features_after_tsfel = get_model_features_with_tsfel(df_features, video_name)
 
 # Load the model and make predictions
-model = joblib.load('posture_modality.pkl')
+model = joblib.load('posture_modality_aug.pkl')
 X_input = df_features_after_tsfel.drop(columns=['Video']).values
 y_pred = model.predict(X_input)
 print(f"Predicted class: {y_pred[0]}")
