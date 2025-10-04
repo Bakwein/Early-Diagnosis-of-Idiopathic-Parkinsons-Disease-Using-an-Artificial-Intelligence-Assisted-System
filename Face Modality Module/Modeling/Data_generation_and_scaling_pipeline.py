@@ -8,10 +8,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
 ############################### THIS IS Data_preparation.py THE PATH OF THE RESULTING PROPERTY FILE  #####################
 file_path = r"<project_root>\dataset\pyfeat_lokal_60_skipframes\parkinson_0_0.xlsx" # Use .xlsx or .xls extension
 df = pd.read_excel(file_path)
+
 
 
 ###########   PİPELİNE ##############
@@ -36,8 +36,6 @@ def feature_engineering(df,df2):
     params152=(1, 1, 1)
     params16=(1, 1, 1)
     paramstg1=(1, 1, 1)
-
-
 
     # new columns
     df['nf1'] = (df['AU01'] * params[0] + df['AU02'] * params[0] + df['AU04'] * params[0]) / params[2]
@@ -76,7 +74,6 @@ def feature_engineering(df,df2):
 
     df['tg1'] =  ( np.sin(df['AU05']) + np.sin(df['AU25']) + np.sin(df['AU26'])  + np.sin(df['nf7']) + np.sin(df['nf8']) + np.sin(df['nf11']) + np.sin(df['nf13']) + np.sin(df['nf14'])) / np.sin((13 * df2['time']))
     
-  
     return df
 
 
@@ -90,8 +87,5 @@ save_path = r"<project_root>\Modeling\test.csv"
 df.to_csv(save_path, index=False)
 
 print(f"DataFrame has been successfully saved at {save_path}.")
-
-
-
 
 
