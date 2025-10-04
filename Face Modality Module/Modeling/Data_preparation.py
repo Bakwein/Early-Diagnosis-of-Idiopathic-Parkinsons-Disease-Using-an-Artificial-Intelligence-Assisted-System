@@ -112,7 +112,7 @@ def get_video_info(video_path):
 
     
     if not cap.isOpened():
-        print("Video açılamadı!")
+        print("Failed to open video!")
         return None
 
    
@@ -125,9 +125,9 @@ def get_video_info(video_path):
     duration = total_frames / fps  
 
     
-    print(f"Toplam Kare Sayısı: {total_frames}")
-    print(f"FPS (Kare/Saniye): {fps}")
-    print(f"Süre (saniye): {duration:.2f}")
+    print(f"Total Frame Count: {total_frames}")
+    print(f"FPS (Frames per Second): {fps}")
+    print(f"Duration (seconds): {duration:.2f}")
 
     
     cap.release()
@@ -187,9 +187,9 @@ def process_videos_in_batches(video_paths, output_prefix,grup):
         
         if not df_results.empty:
            
-            output_excel_path = f'/content/drive/MyDrive/asist_lab_bitirme/dataset_test/{output_prefix}_{grup}_{i}.xlsx'#THIS WILL BE CHANGED ACCORDING TO THE APPROPRIATE DATASET PATH
+            output_excel_path = f'<project_root>/dataset_test/{output_prefix}_{grup}_{i}.xlsx'#THIS WILL BE CHANGED ACCORDING TO THE APPROPRIATE DATASET PATH
             df_results.to_excel(output_excel_path, index=False)
-            print(f"{output_excel_path} kaydedildi.")
+            print(f"{output_excel_path} has been saved.")
 
 
 
@@ -199,53 +199,8 @@ def process_videos_in_batches(video_paths, output_prefix,grup):
 ####################################################################################################
 ################################     finally video processing    ###################################
 
-pathlist=["/content/drive/MyDrive/asist_lab_bitirme/test/parkinson/nihat-karasin-durus-tekayak-trim_YQ3k7X3f.mp4"]#Enter the video paths to be processed with py feat here
+pathlist=["<project_root>/test/parkinson/sample-patient-name-durus-tekayak-trim_YQ3k7X3f.mp4"] #Enter the video paths to be processed with py feat here
 process_videos_in_batches(pathlist, 'parkinson',0)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
