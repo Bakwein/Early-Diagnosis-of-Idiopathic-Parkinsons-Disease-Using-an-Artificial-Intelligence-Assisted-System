@@ -10,7 +10,7 @@ import seaborn as sns
 
 
 ############################### THIS IS Data_preparation.py THE PATH OF THE RESULTING PROPERTY FILE  #####################
-file_path = r"C:\Users\murat\OneDrive\Masaüstü\bitirme\dataset\pyfeat_lokal_60_skipframes\parkinson_0_0.xlsx" # Use .xlsx or .xls extension
+file_path = r"<project_root>\dataset\pyfeat_lokal_60_skipframes\parkinson_0_0.xlsx" # Use .xlsx or .xls extension
 df = pd.read_excel(file_path)
 
 
@@ -84,12 +84,12 @@ df=feature_engineering(df,df2)
 print(df.head())
 
 # save path
-save_path = r"C:\Users\murat\OneDrive\Masaüstü\bitirme\Modeling\test.csv"
+save_path = r"<project_root>\Modeling\test.csv"
 
 # Save DataFrame as CSV
 df.to_csv(save_path, index=False)
 
-print(f"DataFrame başarıyla {save_path} konumuna kaydedildi.")
+print(f"DataFrame has been successfully saved at {save_path}.")
 
 
 
