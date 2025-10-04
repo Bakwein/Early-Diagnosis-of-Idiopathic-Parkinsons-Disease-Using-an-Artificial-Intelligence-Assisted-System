@@ -15,7 +15,7 @@ def find_angle(x1, y1, x2, y2):
 
 def find_angle_3d(x1, y1, z1, x2, y2, z2):
     v1 = np.array([x2 - x1, y2 - y1, z2 - z1])
-    v2 = np.array([0, -1, 0])  # yukarı yön
+    v2 = np.array([0, -1, 0])
 
     unit_v1 = v1 / np.linalg.norm(v1)
     unit_v2 = v2 / np.linalg.norm(v2)
@@ -49,7 +49,6 @@ def extract_features_from_video(video_path):
     fps = cap.get(cv2.CAP_PROP_FPS)  
     frame_count = cap.get(cv2.CAP_PROP_FRAME_COUNT) 
     
-
     frame_idx = 0
     while cap.isOpened():
         success, image = cap.read()
@@ -57,7 +56,7 @@ def extract_features_from_video(video_path):
             print("No frames read from video.")
             break
 
-        if image.shape[0] < image.shape[1]:  # Dikey video ise
+        if image.shape[0] < image.shape[1]:
             image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
             
         frame_number = int(cap.get(cv2.CAP_PROP_POS_FRAMES))
@@ -71,7 +70,6 @@ def extract_features_from_video(video_path):
             lm = keypoints.pose_landmarks
             lmPose = mp_pose.PoseLandmark
 
-            
             l_shldr_x = int(lm.landmark[lmPose.LEFT_SHOULDER].x * image.shape[1])
             l_shldr_y = int(lm.landmark[lmPose.LEFT_SHOULDER].y * image.shape[0])
             l_ear_x = int(lm.landmark[lmPose.LEFT_EAR].x * image.shape[1])
@@ -79,11 +77,9 @@ def extract_features_from_video(video_path):
             l_hip_x = int(lm.landmark[lmPose.LEFT_HIP].x * image.shape[1])
             l_hip_y = int(lm.landmark[lmPose.LEFT_HIP].y * image.shape[0])
 
-            
             neck_inclination = find_angle(l_shldr_x, l_shldr_y, l_ear_x, l_ear_y)
             torso_inclination = find_angle(l_hip_x, l_hip_y, l_shldr_x, l_shldr_y)
 
-            
             l_shldr_3d = lm.landmark[lmPose.LEFT_SHOULDER]
             r_shldr_3d = lm.landmark[lmPose.RIGHT_SHOULDER]
             l_ear_3d = lm.landmark[lmPose.LEFT_EAR]
@@ -91,30 +87,23 @@ def extract_features_from_video(video_path):
             neck_3d = find_angle_3d(l_shldr_3d.x, l_shldr_3d.y, l_shldr_3d.z, l_ear_3d.x, l_ear_3d.y, l_ear_3d.z)
             torso_3d = find_angle_3d(l_hip_3d.x, l_hip_3d.y, l_hip_3d.z, l_shldr_3d.x, l_shldr_3d.y, l_shldr_3d.z)
 
-
             # NEW FEATURES
 
-            
             shoulder_height_diff = abs(l_shldr_y - l_hip_y)
 
-            
             head_tilt_2d = find_angle(l_shldr_x, l_shldr_y, l_ear_x, l_ear_y)
             head_tilt_3d = find_angle_3d(l_shldr_3d.x, l_shldr_3d.y, l_shldr_3d.z, l_ear_3d.x, l_ear_3d.y, l_ear_3d.z)
 
-            
             shoulder_line_angle_2d = find_angle(l_shldr_3d.x, l_shldr_3d.y, r_shldr_3d.x, r_shldr_3d.y)
             shoulder_line_angle_3d = find_angle_3d(l_shldr_3d.x, l_shldr_3d.y, l_shldr_3d.z, r_shldr_3d.x, r_shldr_3d.y, r_shldr_3d.z)
 
-
-            
             cv2.circle(image, (l_shldr_x, l_shldr_y), 7, yellow, -1)
             cv2.circle(image, (l_ear_x, l_ear_y), 7, yellow, -1)
             cv2.circle(image, (l_shldr_x, l_shldr_y - 100), 7, yellow, -1)
             cv2.circle(image, (l_hip_x, l_hip_y), 7, yellow, -1)
             cv2.circle(image, (l_hip_x, l_hip_y - 100), 7, yellow, -1)
 
-            angle_text_string = f'Boyun : {int(neck_inclination)}  Govde : {int(torso_inclination)}'
-
+            angle_text_string = f'Neck : {int(neck_inclination)}  Body : {int(torso_inclination)}'
 
             # add to dataframe
             df = pd.concat([df, pd.DataFrame([{
@@ -140,7 +129,6 @@ def extract_features_from_video(video_path):
             cv2.line(image, (l_hip_x, l_hip_y), (l_shldr_x, l_shldr_y), green, 4)
             cv2.line(image, (l_hip_x, l_hip_y), (l_hip_x, l_hip_y - 100), green, 4)                                  
 
-
         # Write frame to video output
         #video_output.write(image)
     
@@ -154,7 +142,6 @@ def extract_features_from_video(video_path):
     return df
 
 selected_features = ['Shoulder_Line_Angle_3D_MFCC_2', 'Shoulder_Line_Angle_3D_Histogram mode', 'Shoulder_Line_Angle_3D_Median absolute deviation', 'Head_Tilt_3D_Absolute energy', 'Torso_Inclination_2D_Median absolute deviation', 'Torso_Inclination_2D_Interquartile range', 'Head_Tilt_3D_Mean diff', 'Shoulder_Line_Angle_3D_Spectral decrease', 'Shoulder_Line_Angle_3D_MFCC_5', 'Shoulder_Line_Angle_3D_Interquartile range', 'Head_Tilt_2D_Max', 'Shoulder_Line_Angle_3D_Positive turning points', 'Head_Tilt_2D_Skewness', 'Shoulder_Line_Angle_3D_Max power spectrum', 'Head_Tilt_2D_MFCC_3', 'Head_Tilt_2D_Average power', 'Neck_Inclination_2D_LPCC_9', 'Shoulder_Line_Angle_3D_Peak to peak distance', 'Head_Tilt_3D_Spectral variation', 'Shoulder_Line_Angle_3D_Spectrogram mean coefficient_19.35Hz', 'Neck_Inclination_2D_LPCC_6', 'Neck_Inclination_3D_Interquartile range', 'Shoulder_Line_Angle_2D_Spectrogram mean coefficient_6.45Hz', 'Head_Tilt_2D_Median absolute deviation', 'Head_Tilt_2D_Mean', 'Head_Tilt_3D_LPCC_9', 'Neck_Inclination_3D_Area under the curve', 'Head_Tilt_2D_LPCC_3', 'Shoulder_Line_Angle_3D_MFCC_9', 'Head_Tilt_2D_Interquartile range']
-
 
 def get_model_features_with_tsfel(df, video_name):
     cfg = tsfel.get_features_by_domain()
@@ -198,5 +185,3 @@ print(f"Predicted class: {y_pred[0]}")
 y_proba = model.predict_proba(X_input)
 print(f"Class 0 prob.: {y_proba[0][0]:.2f}")
 print(f"Class 1 prob.: {y_proba[0][1]:.2f}")
-
-
