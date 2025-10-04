@@ -14,7 +14,7 @@ def find_angle(x1, y1, x2, y2):
 
 def find_angle_3d(x1, y1, z1, x2, y2, z2):
     v1 = np.array([x2 - x1, y2 - y1, z2 - z1])
-    v2 = np.array([0, -1, 0])  # yukarı yön
+    v2 = np.array([0, -1, 0])
 
     unit_v1 = v1 / np.linalg.norm(v1)
     unit_v2 = v2 / np.linalg.norm(v2)
@@ -23,7 +23,6 @@ def find_angle_3d(x1, y1, z1, x2, y2, z2):
     angle = np.arccos(np.clip(dot_product, -1.0, 1.0)) 
     angle_deg = np.degrees(angle)
     return angle_deg
-
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -35,7 +34,6 @@ dark_blue = (127, 20, 0)
 light_green = (127, 233, 100)
 yellow = (0, 255, 255)
 pink = (255, 0, 255)
-
 
 short_video_paths_parkinson = []
 root_dir = "./Durus/healthy/"
@@ -56,10 +54,10 @@ label = 0 # 1 parkinson 0 healthy
 
 for file_name in short_video_paths_parkinson:
     cap = cv2.VideoCapture(file_name)
-
     if not cap.isOpened():
         print(f"Could not open video: {file_name}")
         continue
+      
     video_name = os.path.basename(file_name).split('.')[0]  
     fps = cap.get(cv2.CAP_PROP_FPS)  
     frame_count = cap.get(cv2.CAP_PROP_FRAME_COUNT)  
@@ -82,7 +80,6 @@ for file_name in short_video_paths_parkinson:
         if keypoints.pose_landmarks:
             lm = keypoints.pose_landmarks
             lmPose = mp_pose.PoseLandmark
-
             
             l_shldr_x = int(lm.landmark[lmPose.LEFT_SHOULDER].x * image.shape[1])
             l_shldr_y = int(lm.landmark[lmPose.LEFT_SHOULDER].y * image.shape[0])
@@ -91,11 +88,9 @@ for file_name in short_video_paths_parkinson:
             l_hip_x = int(lm.landmark[lmPose.LEFT_HIP].x * image.shape[1])
             l_hip_y = int(lm.landmark[lmPose.LEFT_HIP].y * image.shape[0])
 
-            
             neck_inclination = find_angle(l_shldr_x, l_shldr_y, l_ear_x, l_ear_y)
             torso_inclination = find_angle(l_hip_x, l_hip_y, l_shldr_x, l_shldr_y)
 
-            
             l_shldr_3d = lm.landmark[lmPose.LEFT_SHOULDER]
             r_shldr_3d = lm.landmark[lmPose.RIGHT_SHOULDER]
             l_ear_3d = lm.landmark[lmPose.LEFT_EAR]
@@ -103,22 +98,16 @@ for file_name in short_video_paths_parkinson:
             neck_3d = find_angle_3d(l_shldr_3d.x, l_shldr_3d.y, l_shldr_3d.z, l_ear_3d.x, l_ear_3d.y, l_ear_3d.z)
             torso_3d = find_angle_3d(l_hip_3d.x, l_hip_3d.y, l_hip_3d.z, l_shldr_3d.x, l_shldr_3d.y, l_shldr_3d.z)
 
-
             # NEW FEATURES
 
-            
             shoulder_height_diff = abs(l_shldr_y - l_hip_y)
 
-            
             head_tilt_2d = find_angle(l_shldr_x, l_shldr_y, l_ear_x, l_ear_y)
             head_tilt_3d = find_angle_3d(l_shldr_3d.x, l_shldr_3d.y, l_shldr_3d.z, l_ear_3d.x, l_ear_3d.y, l_ear_3d.z)
 
-            
             shoulder_line_angle_2d = find_angle(l_shldr_3d.x, l_shldr_3d.y, r_shldr_3d.x, r_shldr_3d.y)
             shoulder_line_angle_3d = find_angle_3d(l_shldr_3d.x, l_shldr_3d.y, l_shldr_3d.z, r_shldr_3d.x, r_shldr_3d.y, r_shldr_3d.z)
 
-
-            
             cv2.circle(image, (l_shldr_x, l_shldr_y), 7, yellow, -1)
             cv2.circle(image, (l_ear_x, l_ear_y), 7, yellow, -1)
             cv2.circle(image, (l_shldr_x, l_shldr_y - 100), 7, yellow, -1)
@@ -126,7 +115,6 @@ for file_name in short_video_paths_parkinson:
             cv2.circle(image, (l_hip_x, l_hip_y - 100), 7, yellow, -1)
 
             angle_text_string = f'Boyun : {int(neck_inclination)}  Govde : {int(torso_inclination)}'
-
 
             # add to dataframe
             df = pd.concat([df, pd.DataFrame([{
@@ -153,7 +141,6 @@ for file_name in short_video_paths_parkinson:
             cv2.line(image, (l_hip_x, l_hip_y), (l_shldr_x, l_shldr_y), green, 4)
             cv2.line(image, (l_hip_x, l_hip_y), (l_hip_x, l_hip_y - 100), green, 4)                                  
 
-
         # Write frame to video output
         #video_output.write(image)
     
@@ -165,5 +152,4 @@ for file_name in short_video_paths_parkinson:
     cv2.destroyAllWindows()
 
     csv_file = "new_posture_data_full_test_3105.csv"
-    df.to_csv(csv_file, mode='a', index=False, header=not os.path.exists(csv_file))  # Append yap
-
+    df.to_csv(csv_file, mode='a', index=False, header=not os.path.exists(csv_file))  # Append
