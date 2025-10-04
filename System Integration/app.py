@@ -61,13 +61,13 @@ def run_face_prediction_subprocess():
     try:
         result = subprocess.run(
             [
-                r"C:\Users\EfeTasyurek\PycharmProjects\pythonProject\System_Integration\face_env\Scripts\python.exe",
+                r"<project root>\face_env\Scripts\python.exe",
                 "face_test_script.py",
             ],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             timeout=5000,
-            cwd=r"C:\Users\EfeTasyurek\PycharmProjects\pythonProject\System_Integration"
+            cwd=r"<project root>"
         )
 
         if result.returncode != 0:
@@ -858,4 +858,5 @@ if __name__ == "__main__":
         server_port=7860,
         show_api=False,
         share=False
+
     )
