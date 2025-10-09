@@ -36,13 +36,13 @@ yellow = (0, 255, 255)
 pink = (255, 0, 255)
 
 short_video_paths_parkinson = []
-root_dir = "./Durus/healthy/"
+root_dir = "temp"
 for person_name in os.listdir(root_dir):
     person_path = os.path.join(root_dir, person_name)
 
     if os.path.isdir(person_path):
         for file in os.listdir(person_path):
-            if file.endswith("TekAyak.mp4") or file.endswith("TekAyak.mov") or file.endswith("TekAyak.avi"):
+            if file.endswith("temp.mp4") or file.endswith("temp.mov") or file.endswith("temp.avi"):
                 short_video_paths_parkinson.append(os.path.join(person_path, file))
 
 print(short_video_paths_parkinson, len(short_video_paths_parkinson))
@@ -129,7 +129,7 @@ for file_name in short_video_paths_parkinson:
                 'Head_Tilt_3D': head_tilt_3d,
                 'Shoulder_Line_Angle_2D': shoulder_line_angle_2d,
                 'Shoulder_Line_Angle_3D': shoulder_line_angle_3d,
-                'Label': label  # Parkinson (1) veya Sağlıklı (0)
+                'Label': label
             }])], ignore_index=True)
 
             cv2.putText(image, angle_text_string, (10, 30), font, 0.9, light_green, 2)
@@ -151,5 +151,5 @@ for file_name in short_video_paths_parkinson:
     cap.release()
     cv2.destroyAllWindows()
 
-    csv_file = "new_posture_data_full_test_3105.csv"
+    csv_file = "temp.csv"
     df.to_csv(csv_file, mode='a', index=False, header=not os.path.exists(csv_file))  # Append
