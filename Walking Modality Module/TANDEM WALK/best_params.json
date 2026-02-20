@@ -1,0 +1,16 @@
+{
+    "gru_units_1": 64,
+    "gru_units_2": 32,
+    "gru_units_3": 16,
+    "dense_units_1": 32,
+    "dense_units_2": 16,
+    "dropout_rate_1": 0.5,
+    "dropout_rate_2": 0.5,
+    "dropout_rate_3": 0.2,
+    "dropout_rate_4": 0.3,
+    "dropout_rate_5": 0.1,
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "batch_size": 8,
+    "epochs": 75
+}

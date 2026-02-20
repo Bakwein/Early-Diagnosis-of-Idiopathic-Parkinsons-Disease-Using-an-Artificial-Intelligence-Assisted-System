@@ -1,0 +1,382 @@
+[
+    {
+        "params": {
+            "gru_units_1": 256,
+            "gru_units_2": 32,
+            "gru_units_3": 16,
+            "dense_units_1": 128,
+            "dense_units_2": 32,
+            "dropout_rate_1": 0.3,
+            "dropout_rate_2": 0.3,
+            "dropout_rate_3": 0.2,
+            "dropout_rate_4": 0.3,
+            "dropout_rate_5": 0.1,
+            "learning_rate": 0.001,
+            "optimizer": "rmsprop",
+            "batch_size": 32,
+            "epochs": 75
+        },
+        "accuracy": 0.7707317073170732
+    },
+    {
+        "params": {
+            "gru_units_1": 64,
+            "gru_units_2": 32,
+            "gru_units_3": 16,
+            "dense_units_1": 32,
+            "dense_units_2": 16,
+            "dropout_rate_1": 0.5,
+            "dropout_rate_2": 0.5,
+            "dropout_rate_3": 0.2,
+            "dropout_rate_4": 0.3,
+            "dropout_rate_5": 0.1,
+            "learning_rate": 0.001,
+            "optimizer": "adam",
+            "batch_size": 8,
+            "epochs": 75
+        },
+        "accuracy": 0.9170731707317075
+    },
+    {
+        "params": {
+            "gru_units_1": 256,
+            "gru_units_2": 64,
+            "gru_units_3": 16,
+            "dense_units_1": 32,
+            "dense_units_2": 64,
+            "dropout_rate_1": 0.4,
+            "dropout_rate_2": 0.4,
+            "dropout_rate_3": 0.3,
+            "dropout_rate_4": 0.1,
+            "dropout_rate_5": 0.1,
+            "learning_rate": 0.0005,
+            "optimizer": "rmsprop",
+            "batch_size": 8,
+            "epochs": 75
+        },
+        "accuracy": 0.9073170731707318
+    },
+    {
+        "params": {
+            "gru_units_1": 64,
+            "gru_units_2": 64,
+            "gru_units_3": 32,
+            "dense_units_1": 128,
+            "dense_units_2": 32,
+            "dropout_rate_1": 0.3,
+            "dropout_rate_2": 0.5,
+            "dropout_rate_3": 0.3,
+            "dropout_rate_4": 0.3,
+            "dropout_rate_5": 0.1,
+            "learning_rate": 0.0005,
+            "optimizer": "rmsprop",
+            "batch_size": 32,
+            "epochs": 75
+        },
+        "accuracy": 0.8439024390243901
+    },
+    {
+        "params": {
+            "gru_units_1": 256,
+            "gru_units_2": 128,
+            "gru_units_3": 32,
+            "dense_units_1": 128,
+            "dense_units_2": 16,
+            "dropout_rate_1": 0.5,
+            "dropout_rate_2": 0.3,
+            "dropout_rate_3": 0.2,
+            "dropout_rate_4": 0.3,
+            "dropout_rate_5": 0.1,
+            "learning_rate": 0.0005,
+            "optimizer": "rmsprop",
+            "batch_size": 8,
+            "epochs": 50
+        },
+        "accuracy": 0.9024390243902438
+    },
+    {
+        "params": {
+            "gru_units_1": 128,
+            "gru_units_2": 64,
+            "gru_units_3": 32,
+            "dense_units_1": 128,
+            "dense_units_2": 32,
+            "dropout_rate_1": 0.3,
+            "dropout_rate_2": 0.4,
+            "dropout_rate_3": 0.3,
+            "dropout_rate_4": 0.1,
+            "dropout_rate_5": 0.3,
+            "learning_rate": 0.0005,
+            "optimizer": "rmsprop",
+            "batch_size": 32,
+            "epochs": 100
+        },
+        "accuracy": 0.8878048780487804
+    },
+    {
+        "params": {
+            "gru_units_1": 64,
+            "gru_units_2": 128,
+            "gru_units_3": 64,
+            "dense_units_1": 32,
+            "dense_units_2": 16,
+            "dropout_rate_1": 0.4,
+            "dropout_rate_2": 0.4,
+            "dropout_rate_3": 0.3,
+            "dropout_rate_4": 0.3,
+            "dropout_rate_5": 0.3,
+            "learning_rate": 0.001,
+            "optimizer": "rmsprop",
+            "batch_size": 32,
+            "epochs": 75
+        },
+        "accuracy": 0.7658536585365854
+    },
+    {
+        "params": {
+            "gru_units_1": 64,
+            "gru_units_2": 32,
+            "gru_units_3": 16,
+            "dense_units_1": 64,
+            "dense_units_2": 32,
+            "dropout_rate_1": 0.4,
+            "dropout_rate_2": 0.3,
+            "dropout_rate_3": 0.2,
+            "dropout_rate_4": 0.3,
+            "dropout_rate_5": 0.3,
+            "learning_rate": 0.0005,
+            "optimizer": "rmsprop",
+            "batch_size": 32,
+            "epochs": 75
+        },
+        "accuracy": 0.7951219512195122
+    },
+    {
+        "params": {
+            "gru_units_1": 128,
+            "gru_units_2": 128,
+            "gru_units_3": 32,
+            "dense_units_1": 32,
+            "dense_units_2": 32,
+            "dropout_rate_1": 0.3,
+            "dropout_rate_2": 0.3,
+            "dropout_rate_3": 0.4,
+            "dropout_rate_4": 0.3,
+            "dropout_rate_5": 0.3,
+            "learning_rate": 0.0005,
+            "optimizer": "adam",
+            "batch_size": 32,
+            "epochs": 75
+        },
+        "accuracy": 0.8292682926829269
+    },
+    {
+        "params": {
+            "gru_units_1": 128,
+            "gru_units_2": 32,
+            "gru_units_3": 16,
+            "dense_units_1": 128,
+            "dense_units_2": 32,
+            "dropout_rate_1": 0.3,
+            "dropout_rate_2": 0.3,
+            "dropout_rate_3": 0.2,
+            "dropout_rate_4": 0.1,
+            "dropout_rate_5": 0.3,
+            "learning_rate": 0.0001,
+            "optimizer": "adam",
+            "batch_size": 32,
+            "epochs": 50
+        },
+        "accuracy": 0.6195121951219512
+    },
+    {
+        "params": {
+            "gru_units_1": 128,
+            "gru_units_2": 64,
+            "gru_units_3": 64,
+            "dense_units_1": 64,
+            "dense_units_2": 64,
+            "dropout_rate_1": 0.4,
+            "dropout_rate_2": 0.5,
+            "dropout_rate_3": 0.2,
+            "dropout_rate_4": 0.3,
+            "dropout_rate_5": 0.3,
+            "learning_rate": 0.0001,
+            "optimizer": "adam",
+            "batch_size": 32,
+            "epochs": 75
+        },
+        "accuracy": 0.6146341463414634
+    },
+    {
+        "params": {
+            "gru_units_1": 64,
+            "gru_units_2": 64,
+            "gru_units_3": 32,
+            "dense_units_1": 32,
+            "dense_units_2": 32,
+            "dropout_rate_1": 0.3,
+            "dropout_rate_2": 0.5,
+            "dropout_rate_3": 0.4,
+            "dropout_rate_4": 0.2,
+            "dropout_rate_5": 0.3,
+            "learning_rate": 0.0001,
+            "optimizer": "rmsprop",
+            "batch_size": 32,
+            "epochs": 75
+        },
+        "accuracy": 0.575609756097561
+    },
+    {
+        "params": {
+            "gru_units_1": 256,
+            "gru_units_2": 128,
+            "gru_units_3": 64,
+            "dense_units_1": 32,
+            "dense_units_2": 16,
+            "dropout_rate_1": 0.4,
+            "dropout_rate_2": 0.3,
+            "dropout_rate_3": 0.4,
+            "dropout_rate_4": 0.3,
+            "dropout_rate_5": 0.1,
+            "learning_rate": 0.001,
+            "optimizer": "adam",
+            "batch_size": 16,
+            "epochs": 50
+        },
+        "accuracy": 0.9073170731707316
+    },
+    {
+        "params": {
+            "gru_units_1": 64,
+            "gru_units_2": 64,
+            "gru_units_3": 32,
+            "dense_units_1": 32,
+            "dense_units_2": 16,
+            "dropout_rate_1": 0.3,
+            "dropout_rate_2": 0.5,
+            "dropout_rate_3": 0.2,
+            "dropout_rate_4": 0.1,
+            "dropout_rate_5": 0.3,
+            "learning_rate": 0.0005,
+            "optimizer": "rmsprop",
+            "batch_size": 32,
+            "epochs": 50
+        },
+        "accuracy": 0.6829268292682926
+    },
+    {
+        "params": {
+            "gru_units_1": 64,
+            "gru_units_2": 128,
+            "gru_units_3": 32,
+            "dense_units_1": 128,
+            "dense_units_2": 16,
+            "dropout_rate_1": 0.4,
+            "dropout_rate_2": 0.5,
+            "dropout_rate_3": 0.4,
+            "dropout_rate_4": 0.2,
+            "dropout_rate_5": 0.1,
+            "learning_rate": 0.001,
+            "optimizer": "rmsprop",
+            "batch_size": 32,
+            "epochs": 75
+        },
+        "accuracy": 0.8975609756097562
+    },
+    {
+        "params": {
+            "gru_units_1": 128,
+            "gru_units_2": 128,
+            "gru_units_3": 64,
+            "dense_units_1": 64,
+            "dense_units_2": 32,
+            "dropout_rate_1": 0.5,
+            "dropout_rate_2": 0.4,
+            "dropout_rate_3": 0.2,
+            "dropout_rate_4": 0.1,
+            "dropout_rate_5": 0.1,
+            "learning_rate": 0.0001,
+            "optimizer": "adam",
+            "batch_size": 8,
+            "epochs": 100
+        },
+        "accuracy": 0.8487804878048781
+    },
+    {
+        "params": {
+            "gru_units_1": 256,
+            "gru_units_2": 32,
+            "gru_units_3": 64,
+            "dense_units_1": 32,
+            "dense_units_2": 16,
+            "dropout_rate_1": 0.3,
+            "dropout_rate_2": 0.5,
+            "dropout_rate_3": 0.4,
+            "dropout_rate_4": 0.1,
+            "dropout_rate_5": 0.1,
+            "learning_rate": 0.0001,
+            "optimizer": "rmsprop",
+            "batch_size": 16,
+            "epochs": 50
+        },
+        "accuracy": 0.7365853658536585
+    },
+    {
+        "params": {
+            "gru_units_1": 256,
+            "gru_units_2": 32,
+            "gru_units_3": 32,
+            "dense_units_1": 128,
+            "dense_units_2": 32,
+            "dropout_rate_1": 0.3,
+            "dropout_rate_2": 0.5,
+            "dropout_rate_3": 0.2,
+            "dropout_rate_4": 0.3,
+            "dropout_rate_5": 0.3,
+            "learning_rate": 0.001,
+            "optimizer": "adam",
+            "batch_size": 8,
+            "epochs": 75
+        },
+        "accuracy": 0.9073170731707318
+    },
+    {
+        "params": {
+            "gru_units_1": 128,
+            "gru_units_2": 32,
+            "gru_units_3": 16,
+            "dense_units_1": 32,
+            "dense_units_2": 64,
+            "dropout_rate_1": 0.4,
+            "dropout_rate_2": 0.4,
+            "dropout_rate_3": 0.3,
+            "dropout_rate_4": 0.2,
+            "dropout_rate_5": 0.2,
+            "learning_rate": 0.001,
+            "optimizer": "rmsprop",
+            "batch_size": 32,
+            "epochs": 100
+        },
+        "accuracy": 0.853658536585366
+    },
+    {
+        "params": {
+            "gru_units_1": 256,
+            "gru_units_2": 32,
+            "gru_units_3": 16,
+            "dense_units_1": 64,
+            "dense_units_2": 64,
+            "dropout_rate_1": 0.4,
+            "dropout_rate_2": 0.3,
+            "dropout_rate_3": 0.2,
+            "dropout_rate_4": 0.1,
+            "dropout_rate_5": 0.1,
+            "learning_rate": 0.001,
+            "optimizer": "adam",
+            "batch_size": 8,
+            "epochs": 75
+        },
+        "accuracy": 0.9024390243902438
+    }
+]
