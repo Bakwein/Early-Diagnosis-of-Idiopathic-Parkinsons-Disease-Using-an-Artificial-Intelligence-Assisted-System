@@ -31,7 +31,7 @@ Each modality captures a distinct set of Parkinson's-related motor or neurologic
 |---|---|---|
 | Normal Walking (Gait) | Gait abnormalities, step asymmetry | Bidirectional GRU |
 | Tandem Walking | Balance and coordination deficits | Bidirectional GRU |
-| Face | Facial hypomimia (reduced expression) | XGBoost |
+| Face | Facial hypomimia (reduced expression) | Ensemble (XGBoost + RF + CatBoost, Soft Voting) |
 | Voice | Dysphonia, tremor in speech | Random Forest |
 | Posture | Stooped / flexed posture | Sklearn classifier |
 
@@ -205,12 +205,12 @@ This compression step encodes clinically meaningful facial movement patterns and
 
 **File:** `Modeling/test_pipeline.py` | Integration: `face_test_script.py`
 
-- Loaded from `best_trained_face_model.pkl` (XGBoost-based, serialized via `joblib`).
+- Loaded from `best_trained_face_model.pkl` (Ensemble: XGBoost + RF + CatBoost, Soft Voting — serialized via `joblib`).
 - Inference pipeline:
   1. Extract raw AUs from video frames.
   2. Compute compound features (`o1`, `o2` groups).
   3. Apply IQR-based outlier clipping.
-  4. Predict with the XGBoost classifier; return `predict_proba` score.
+  4. Predict with the Ensemble classifier (Soft Voting); return `predict_proba` score.
 
 ---
 
@@ -333,7 +333,7 @@ Clinician Input (Gradio UI)
 | Tandem Walk | ThreadPoolExecutor worker | Keras `.h5` |
 | Voice | ThreadPoolExecutor worker | joblib Random Forest |
 | Posture | ThreadPoolExecutor worker | joblib sklearn |
-| Face | Subprocess (`face_env`) | joblib XGBoost |
+| Face | Subprocess (`face_env`) | joblib Ensemble (XGBoost + RF + CatBoost) |
 
 ### Score Fusion
 
@@ -412,7 +412,7 @@ In compliance with privacy regulations and ethical considerations, the dataset c
 |---|---|---|
 | `tensorflow` | 2.17.1 | Bidirectional GRU models (Walking) |
 | `scikit-learn` | 1.6.1 | Scalers, Random Forest, cross-validation |
-| `xgboost` | 2.1.4 | Face AU classification |
+| `xgboost` | 2.1.4 | Face AU classification (Ensemble component) |
 | `mediapipe` | — | Pose keypoint extraction |
 | `librosa` | — | Voice feature extraction |
 | `py-feat` | 0.6.2 | Facial Action Unit detection |
