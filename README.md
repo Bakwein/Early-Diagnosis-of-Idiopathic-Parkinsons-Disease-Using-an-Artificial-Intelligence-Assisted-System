@@ -239,7 +239,7 @@ Audio files (`.mp3`) are loaded at **44.1 kHz**. The following feature groups ar
 | Spectral Contrast | 7 |
 | Spectral Rolloff | 1 |
 | Tonnetz | 6 |
-| **Total** | **~90–100** |
+| **Total** | **90** |
 
 Extracted features are exported to `features_pipelined.csv` and an augmented version `features_pipelined_augmented.csv`.
 
